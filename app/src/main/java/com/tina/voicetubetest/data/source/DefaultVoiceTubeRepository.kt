@@ -14,8 +14,10 @@ class DefaultVoiceTubeRepository(private val voiceTubeLocalDataSource: VoiceTube
     }
 
     override fun getVideoByDatabase(): LiveData<List<Videos>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return voiceTubeLocalDataSource.getVideoByDatabase()
     }
 
-
+    override suspend fun insertVideos(videos: Videos) {
+        return voiceTubeLocalDataSource.insertVideos(videos)
+    }
 }

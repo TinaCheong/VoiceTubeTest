@@ -17,6 +17,9 @@ android {
     androidExtensions {
         experimental = true
     }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     defaultConfig {
         applicationId "com.tina.voicetubetest"
         minSdkVersion 23

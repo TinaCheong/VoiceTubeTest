@@ -6,6 +6,8 @@ import com.tina.voicetubetest.data.Result
 import com.tina.voicetubetest.data.VideoResult
 import com.tina.voicetubetest.data.Videos
 import com.tina.voicetubetest.data.source.VoiceTubeDataSource
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class VoiceTubeLocalDataSource (private val context: Context) : VoiceTubeDataSource{
 
@@ -17,5 +19,10 @@ class VoiceTubeLocalDataSource (private val context: Context) : VoiceTubeDataSou
         return VideoDatabase.getInstance(context).videoDatabaseDao.getAllVideos()
     }
 
+    override suspend fun insertVideos(videos: Videos) {
+        withContext(Dispatchers.IO) {
+            VideoDatabase.getInstance(context).videoDatabaseDao.saveVideos(videos)
+        }
+    }
 
 }

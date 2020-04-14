@@ -11,4 +11,5 @@ interface VoiceTubeDataSource {
 
     fun getVideoByDatabase(): LiveData<List<Videos>>
 
+    suspend fun insertVideos(videos: Videos)
 }
