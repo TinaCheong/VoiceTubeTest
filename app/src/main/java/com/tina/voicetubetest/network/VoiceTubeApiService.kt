@@ -4,6 +4,8 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tina.voicetubetest.BuildConfig
+import com.tina.voicetubetest.data.VideoResult
+import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -41,7 +43,7 @@ private val retrofit = Retrofit.Builder()
 interface VoiceTubeApiService {
     @FormUrlEncoded
     @POST(KEY_VALUE)
-    fun getVideoList()
+    fun getVideoList(): Deferred<VideoResult>
 }
 
 
