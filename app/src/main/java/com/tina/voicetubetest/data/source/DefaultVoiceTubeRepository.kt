@@ -2,12 +2,14 @@ package com.tina.voicetubetest.data.source
 
 import android.speech.tts.Voice
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
+import androidx.paging.PagedList
 import com.tina.voicetubetest.data.Result
 import com.tina.voicetubetest.data.VideoResult
 import com.tina.voicetubetest.data.Videos
 
-class DefaultVoiceTubeRepository(private val voiceTubeLocalDataSource: VoiceTubeDataSource,
-                                 private val voiceTubeRemoteDataSource: VoiceTubeDataSource) : VoiceTubeRepository {
+class DefaultVoiceTubeRepository(private val voiceTubeRemoteDataSource: VoiceTubeDataSource,
+                                 private val voiceTubeLocalDataSource: VoiceTubeDataSource) : VoiceTubeRepository {
 
     override suspend fun getVideoByNetwork(): Result<VideoResult> {
         return voiceTubeRemoteDataSource.getVideoByNetwork()

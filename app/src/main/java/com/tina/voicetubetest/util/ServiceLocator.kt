@@ -18,11 +18,11 @@ object ServiceLocator {
         synchronized(this) {
             return voiceTubeRepository
                 ?: voiceTubeRepository
-                ?: createLineTVRepository(context)
+                ?: createVoiceTubeRepository(context)
         }
     }
 
-    private fun createLineTVRepository(context: Context): VoiceTubeRepository {
+    private fun createVoiceTubeRepository(context: Context): VoiceTubeRepository {
         return DefaultVoiceTubeRepository(
            VoiceTubeRemoteDataSource,
             createLocalDataSource(context)

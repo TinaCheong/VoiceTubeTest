@@ -7,9 +7,6 @@
         <variable
             name="videos"
             type="com.tina.voicetubetest.data.Videos" />
-        <variable
-            name="itemPosition"
-            type="Integer" />
 
     </data>
 

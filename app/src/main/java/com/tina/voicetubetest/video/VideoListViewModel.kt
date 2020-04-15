@@ -3,8 +3,10 @@ package com.tina.voicetubetest.video
 import android.provider.Settings.Global.getString
 import android.widget.Toast
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.paging.DataSource
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
 import com.tina.voicetubetest.R
@@ -18,11 +20,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class VideoListViewModel (private val voiceTubeRepository: VoiceTubeRepository) : ViewModel(){
-
-    val videos: LiveData<List<Videos>> = voiceTubeRepository.getVideoByDatabase()
+class VideoListViewModel(private val voiceTubeRepository: VoiceTubeRepository) : ViewModel() {
 
     private val sourceFactory = PagingDataSourceFactory()
+
+    val videos : LiveData<PagedList<Videos>> = sourceFactory.toLiveData(3, null)
 
     val pagingDataVideos: LiveData<PagedList<Videos>> = sourceFactory.toLiveData(3, null)
 
@@ -50,14 +52,9 @@ class VideoListViewModel (private val voiceTubeRepository: VoiceTubeRepository) 
         viewModelJob.cancel()
     }
 
-    init {
-        if (videos.value == null) {
-            getVideos(true)
-        }
-    }
 
 
-    private fun getVideos(isInitial: Boolean = false) {
+    fun getVideos(isInitial: Boolean = false) {
 
         coroutineScope.launch {
 

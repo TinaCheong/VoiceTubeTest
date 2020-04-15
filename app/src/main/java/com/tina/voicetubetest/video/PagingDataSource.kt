@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class PagingDataSource : PageKeyedDataSource<String, Videos>() {
+class PagingDataSource : PageKeyedDataSource<Int, Videos>() {
 
     private val _statusInitialLoad = MutableLiveData<LoadApiStatus>()
 
@@ -28,7 +28,7 @@ class PagingDataSource : PageKeyedDataSource<String, Videos>() {
     private val coroutineScope = CoroutineScope(Job() + Dispatchers.Main)
 
 
-    override fun loadInitial(params: LoadInitialParams<String>, callback: LoadInitialCallback<String, Videos>) {
+    override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Videos>) {
 
         coroutineScope.launch {
 
@@ -39,7 +39,7 @@ class PagingDataSource : PageKeyedDataSource<String, Videos>() {
                 is com.tina.voicetubetest.data.Result.Success -> {
                     _errorInitialLoad.value = null
                     _statusInitialLoad.value = LoadApiStatus.DONE
-                   result.data.videoList?.let { callback.onResult(it, null, result.data.status) }
+                   result.data.videoList?.let { callback.onResult(it, null, 3) }
                 }
                 is com.tina.voicetubetest.data.Result.Fail -> {
                     _errorInitialLoad.value = result.error
@@ -57,19 +57,19 @@ class PagingDataSource : PageKeyedDataSource<String, Videos>() {
         }
     }
 
-    override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, Videos>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Videos>) {
 
         coroutineScope.launch {
             val result = VoiceTubeApplication.INSTANCE.voiceTubeRepository.getVideoByNetwork()
             when (result) {
                 is com.tina.voicetubetest.data.Result.Success -> {
-                    result.data.videoList?.let { callback.onResult(it, result.data.status) }
+                    result.data.videoList?.let { callback.onResult(it, 3) }
                 }
             }
         }
     }
 
-    override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<String, Videos>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Videos>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
