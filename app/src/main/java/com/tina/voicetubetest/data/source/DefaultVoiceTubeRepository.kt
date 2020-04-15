@@ -15,7 +15,7 @@ class DefaultVoiceTubeRepository(private val voiceTubeRemoteDataSource: VoiceTub
         return voiceTubeRemoteDataSource.getVideoByNetwork()
     }
 
-    override fun getVideoByDatabase(): LiveData<List<Videos>> {
+    override fun getVideoByDatabase(): DataSource.Factory<Int, Videos> {
         return voiceTubeLocalDataSource.getVideoByDatabase()
     }
 

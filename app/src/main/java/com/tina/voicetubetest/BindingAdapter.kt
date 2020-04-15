@@ -6,15 +6,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import androidx.paging.PagedList
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.google.android.material.animation.DrawableAlphaProperty
-import com.tina.voicetubetest.data.Videos
 import com.tina.voicetubetest.network.LoadApiStatus
-import com.tina.voicetubetest.video.VideoListAdapter
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -53,14 +48,4 @@ fun bindApiErrorMessage(view: TextView, message: String?) {
     }
 }
 
-@BindingAdapter("videos")
-fun bindRecyclerViewWithVideos(recyclerView: RecyclerView, savedVideos: List<Videos>?) {
-    savedVideos?.let {
-        recyclerView.adapter?.apply {
-            when (this) {
-                is VideoListAdapter -> submitList(it)
-            }
-        }
-    }
-}
 

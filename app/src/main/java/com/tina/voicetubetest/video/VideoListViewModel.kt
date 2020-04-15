@@ -7,6 +7,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.DataSource
+import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import androidx.paging.toLiveData
 import com.tina.voicetubetest.R
@@ -22,11 +23,11 @@ import kotlinx.coroutines.launch
 
 class VideoListViewModel(private val voiceTubeRepository: VoiceTubeRepository) : ViewModel() {
 
+    val videosLocal = LivePagedListBuilder(voiceTubeRepository.getVideoByDatabase(),3).build()
+
     private val sourceFactory = PagingDataSourceFactory()
 
     val videos : LiveData<PagedList<Videos>> = sourceFactory.toLiveData(3, null)
-
-    val pagingDataVideos: LiveData<PagedList<Videos>> = sourceFactory.toLiveData(3, null)
 
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -52,6 +53,9 @@ class VideoListViewModel(private val voiceTubeRepository: VoiceTubeRepository) :
         viewModelJob.cancel()
     }
 
+    init {
+        _status.value = LoadApiStatus.DONE
+    }
 
 
     fun getVideos(isInitial: Boolean = false) {
@@ -74,7 +78,7 @@ class VideoListViewModel(private val voiceTubeRepository: VoiceTubeRepository) :
                     is com.tina.voicetubetest.data.Result.Success -> {
                         _error.value = null
                         if (isInitial) _status.value = LoadApiStatus.DONE
-                        result.data.videoList?.forEach {
+                        result.data.videoList.forEach {
                             voiceTubeRepository.insertVideos(it)
                         }
                     }

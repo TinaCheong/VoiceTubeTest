@@ -17,7 +17,7 @@ class VoiceTubeLocalDataSource (private val context: Context) : VoiceTubeDataSou
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getVideoByDatabase(): LiveData<List<Videos>> {
+    override fun getVideoByDatabase(): DataSource.Factory<Int, Videos> {
         return VideoDatabase.getInstance(context).videoDatabaseDao.getAllVideos()
     }
 

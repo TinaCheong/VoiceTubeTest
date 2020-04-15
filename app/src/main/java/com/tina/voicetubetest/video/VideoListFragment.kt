@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import androidx.paging.toLiveData
-import com.tina.voicetubetest.R
+import com.tina.voicetubetest.data.Videos
 import com.tina.voicetubetest.databinding.FragmentListBinding
 import com.tina.voicetubetest.extension.getVmFactory
 
@@ -32,21 +30,13 @@ class VideoListFragment : Fragment(){
 
         binding.recyclerviewList.adapter = VideoPageListAdapter()
 
-//        val pagedListConfig = PagedList.Config.Builder().setEnablePlaceholders(true).setPageSize(3).setInitialLoadSizeHint(3).build()
-//
-//        val videoList = LivePagedListBuilder(viewModel.videos, pagedListConfig).build()
-
-        viewModel.videos.observe(viewLifecycleOwner, Observer {
+        viewModel.videosLocal.observe(viewLifecycleOwner, Observer {
             if (it.isNotEmpty()) {
                 (binding.recyclerviewList.adapter as VideoPageListAdapter).submitList(it)
             } else {
                 viewModel.getVideos(true)
+                (binding.recyclerviewList.adapter as VideoPageListAdapter).submitList(viewModel.videos.value)
             }
-        })
-
-
-        viewModel.pagingDataVideos.observe(viewLifecycleOwner, Observer {
-            (binding.recyclerviewList.adapter as VideoPageListAdapter).submitList(it)
         })
 
         binding.layoutSwipeRefreshList.setOnRefreshListener {
@@ -58,13 +48,6 @@ class VideoListFragment : Fragment(){
                 binding.layoutSwipeRefreshList.isRefreshing = it
             }
         })
-
-//        viewModel.videos.observe(this, Observer {
-//            if (it.isNullOrEmpty()) {
-//                binding.textError.setText(R.string.internet_refresh)
-//            }
-//
-//        })
 
         return binding.root
     }

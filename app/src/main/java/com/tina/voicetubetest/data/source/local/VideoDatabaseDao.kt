@@ -17,6 +17,6 @@ interface VideoDatabaseDao {
     fun saveVideos(videos: Videos)
 
     @Query("SELECT * FROM video_list_table ORDER BY autoId DESC")
-    fun getAllVideos(): LiveData<List<Videos>>
+    fun getAllVideos(): DataSource.Factory<Int, Videos>
 
 }
