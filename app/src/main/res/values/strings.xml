@@ -8,4 +8,9 @@
     <string name="list">List</string>
     <string name="timer">Timer</string>
     <string name="setting">Setting</string>
+
+    <!-- General -->
+    <string name="internet_refresh">開啟網路後記得下拉頁面刷新~</string>
+    <string name="internet_not_connected">您尚未連接 Internet</string>
+    <string name="internet_error">網絡發生錯誤</string>
 </resources>

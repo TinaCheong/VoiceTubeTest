@@ -24,7 +24,7 @@ abstract class VideoDatabase : RoomDatabase(){
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         VideoDatabase::class.java,
-                        "task_database"
+                        "video_database"
                     )
                         .fallbackToDestructiveMigration()
                         .build()
