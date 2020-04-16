@@ -1,13 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.tina.voicetubetest.timer.TimerViewModel" />
+        <import type="android.view.View"/>
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/countdown_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="350dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:indeterminate="false"
+            android:max="@{viewModel.time}"
+            android:progress="@{safeUnbox(viewModel.isCounting())? (viewModel.time - viewModel.timeRemained) : 0 }"
+            android:progressDrawable="@drawable/circular_progress"
+            android:secondaryProgress="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="50" />
+
+        <TextView
+            android:id="@+id/remain_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{String.valueOf(viewModel.timeRemained)}"
+            android:textColor="@color/purple_424874"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/countdown_bar"
+            app:layout_constraintEnd_toEndOf="@+id/countdown_bar"
+            app:layout_constraintStart_toStartOf="@+id/countdown_bar"
+            app:layout_constraintTop_toTopOf="@+id/countdown_bar" />
+
+        <TextView
+            android:id="@+id/second_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/second"
+            android:textColor="@color/purple_424874"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/remain_time"
+            app:layout_constraintStart_toEndOf="@+id/remain_time" />
+
+        <ImageView
+            android:id="@+id/start_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:tint="@color/purple_424874"
+            android:onClick="@{() -> viewModel.startTimer()}"
+            app:layout_constraintBottom_toTopOf="@+id/set_time_button"
+            app:layout_constraintEnd_toStartOf="@+id/pause_icon"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/countdown_bar"
+            app:srcCompat="@drawable/ic_start" />
+
+        <ImageView
+            android:id="@+id/pause_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:tint="@color/purple_424874"
+            android:onClick="@{() -> viewModel.pauseTimer()}"
+            app:layout_constraintEnd_toStartOf="@+id/stop_icon"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/start_icon"
+            app:layout_constraintTop_toTopOf="@+id/start_icon"
+            app:srcCompat="@drawable/ic_pause" />
+
+        <ImageView
+            android:id="@+id/stop_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="16dp"
+            android:tint="@color/purple_424874"
+            android:onClick="@{() -> viewModel.stopTimer()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/pause_icon"
+            app:layout_constraintTop_toTopOf="@+id/pause_icon"
+            app:srcCompat="@drawable/ic_stop" />
+
+        <Button
+            android:id="@+id/set_time_button"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@{safeUnbox(viewModel.isCounting() == true)? @color/gray_646464 : @color/purple_424874}"
+            android:enabled="@{safeUnbox(viewModel.isCounting() == true)? false : true}"
+            android:text="@{safeUnbox(viewModel.isCounting() == true)? @string/timer_counting : @string/set_time}"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

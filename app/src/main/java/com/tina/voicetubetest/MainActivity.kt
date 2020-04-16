@@ -26,7 +26,11 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.navigation_list -> {
-                    findNavController(R.id.myNavHostFragment).navigate(R.id.action_global_videoListFragment)
+                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.actionGlobalVideoListFragment())
+                    true
+                }
+                R.id.navigation_timer -> {
+                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.actionGlobalTimerFragment(0))
                     true
                 }
 
