@@ -10,6 +10,6 @@ fun Fragment.getVmFactory(): ViewModelFactory {
     return ViewModelFactory(repository)
 }
 
-fun Fragment.getVmFactory(time: Int?): TimeViewModelFactory {
+fun Fragment.getVmFactory(time: Int): TimeViewModelFactory {
     return TimeViewModelFactory(time)
 }

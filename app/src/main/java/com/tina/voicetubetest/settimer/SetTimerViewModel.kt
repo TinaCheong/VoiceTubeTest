@@ -7,19 +7,16 @@ import androidx.lifecycle.ViewModel
 
 class SetTimerViewModel (var time: Int) : ViewModel(){
 
-    private val _setTime = MutableLiveData<Int>().apply {
+    var setTime = MutableLiveData<Int>().apply {
         value = time
     }
-    val setTime: LiveData<Int>
-        get() = _setTime
 
     private val _navigateToTimer = MutableLiveData<Int>()
-
     val navigateToTimer: LiveData<Int>
         get() = _navigateToTimer
 
-    fun navigateToFinish() {
-        _navigateToTimer.value = _setTime.value
+    fun navigateToTimer() {
+        _navigateToTimer.value = setTime.value
     }
 
     fun onFinishNavigated() {
@@ -27,10 +24,10 @@ class SetTimerViewModel (var time: Int) : ViewModel(){
     }
 
     init {
-        _setTime.value = 0
+        setTime.value = 0
     }
 
-
+    @InverseMethod("convertIntToString")
     fun convertStringToInt(value: String): Int {
         return try {
             value.toInt()
@@ -38,13 +35,8 @@ class SetTimerViewModel (var time: Int) : ViewModel(){
             1
         }
     }
-
-    @InverseMethod("convertIntToString")
     fun convertIntToString(value: Int?): String {
         return value?.toString() ?: ""
     }
-
-
-
 
 }

@@ -32,9 +32,7 @@ class SetTimerDialog : DialogFragment(){
         SetTimerDialog().dialog?.setCanceledOnTouchOutside(true)
 
         viewModel.navigateToTimer.observe(viewLifecycleOwner, Observer {
-            if (it == null) {
-                Toast.makeText(context, "請輸入秒數！", Toast.LENGTH_SHORT).show()
-            } else {
+            it?.let {
                 findNavController().navigate(NavigationDirections.actionGlobalTimerFragment(it))
                 viewModel.onFinishNavigated()
             }

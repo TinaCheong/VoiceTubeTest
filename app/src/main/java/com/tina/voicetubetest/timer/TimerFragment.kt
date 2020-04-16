@@ -30,7 +30,7 @@ class TimerFragment : Fragment(){
         binding.viewModel = viewModel
 
         binding.setTimeButton.setOnClickListener {
-            findNavController().navigate(NavigationDirections.actionGlobalSetTimerDialog(0))
+            findNavController().navigate(NavigationDirections.actionGlobalSetTimerDialog(viewModel.time))
         }
 
         return binding.root

@@ -18,6 +18,7 @@
     <string name="set_time">設定時間</string>
     <string name="second">秒</string>
     <string name="submit">確定</string>
+    <string name="timer_counting">計時器倒數中…</string>
     <string name="set_time_title">請輸入1~60之間的數字︰</string>
     <string name="error_message_60">不能大於60秒啦！</string>
     <string name="error_message_0">0秒是要倒數甚麼？</string>
