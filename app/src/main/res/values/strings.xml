@@ -13,4 +13,11 @@
     <string name="internet_refresh">開啟網路後記得下拉頁面刷新~</string>
     <string name="internet_not_connected">您尚未連接 Internet</string>
     <string name="internet_error">網絡發生錯誤</string>
+
+    <!-- Timer Fragment -->
+    <string name="set_time">設定時間</string>
+    <string name="second">秒</string>
+    <string name="submit">確定</string>
+    <string name="set_time_title">請輸入1~60之間的數字︰</string>
+    <string name="error_message">不能大於60秒啦!</string>
 </resources>

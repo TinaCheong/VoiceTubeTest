@@ -10,4 +10,11 @@
     <action
         android:id="@+id/action_global_videoListFragment"
         app:destination="@id/videoListFragment" />
+    <fragment
+        android:id="@+id/timerFragment"
+        android:name="com.tina.voicetubetest.timer.TimerFragment"
+        android:label="TimerFragment" />
+    <action
+        android:id="@+id/action_global_timerFragment"
+        app:destination="@id/timerFragment" />
 </navigation>

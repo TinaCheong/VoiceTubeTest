@@ -29,6 +29,10 @@ class MainActivity : AppCompatActivity() {
                     findNavController(R.id.myNavHostFragment).navigate(R.id.action_global_videoListFragment)
                     true
                 }
+                R.id.navigation_timer -> {
+                    findNavController(R.id.myNavHostFragment).navigate(R.id.action_global_timerFragment)
+                    true
+                }
 
                 else -> false
 

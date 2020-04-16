@@ -23,4 +23,8 @@
     <!-- Purple Series -->
     <color name="purple_424874">#424874</color>
     <color name="purple_a6b1e1">#a6b1e1</color>
+    <color name="purple_7f78d2">#7f78d2</color>
+
+    <!-- Red Series -->
+    <color name="red_900c3f">#900c3f</color>
 </resources>
