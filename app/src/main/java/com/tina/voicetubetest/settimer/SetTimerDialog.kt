@@ -1,15 +1,13 @@
-package com.tina.voicetubetest.timer
+package com.tina.voicetubetest.settimer
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import com.tina.voicetubetest.R
-import com.tina.voicetubetest.databinding.FragmentTimerBinding
+import androidx.fragment.app.DialogFragment
+import com.tina.voicetubetest.databinding.DialogSetTimerBinding
 
-class TimerFragment : Fragment(){
+class SetTimerDialog : DialogFragment(){
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,10 +15,11 @@ class TimerFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentTimerBinding.inflate(inflater, container, false)
-
+        val binding = DialogSetTimerBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = this
+
+        SetTimerDialog().dialog?.setCanceledOnTouchOutside(true)
 
         return binding.root
     }
