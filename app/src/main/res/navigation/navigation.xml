@@ -13,8 +13,23 @@
     <fragment
         android:id="@+id/timerFragment"
         android:name="com.tina.voicetubetest.timer.TimerFragment"
-        android:label="TimerFragment" />
+        android:label="TimerFragment" >
+        <argument
+            android:name="time"
+            app:argType="integer" />
+    </fragment>
     <action
         android:id="@+id/action_global_timerFragment"
         app:destination="@id/timerFragment" />
+    <dialog
+        android:id="@+id/setTimerDialog"
+        android:name="com.tina.voicetubetest.settimer.SetTimerDialog"
+        android:label="SetTimerDialog" >
+        <argument
+            android:name="time"
+            app:argType="integer" />
+    </dialog>
+    <action
+        android:id="@+id/action_global_setTimerDialog"
+        app:destination="@id/setTimerDialog" />
 </navigation>
