@@ -12,4 +12,9 @@
         <item name="colorAccent">@color/purple_a6b1e1</item>
     </style>
 
+    <style name="SwitchTextAppearance" parent="@android:style/TextAppearance.Holo.Small">
+        <item name="android:textColor">@color/purple_424874</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

@@ -12,8 +12,6 @@ class TimerViewModel(var time: Int) : ViewModel() {
     private val _setTime = MutableLiveData<Int>().apply {
         value = time
     }
-    val setTime: LiveData<Int>
-        get() = _setTime
 
     private val _timeRemained = MutableLiveData<Int>()
     val timeRemained: LiveData<Int>
@@ -30,8 +28,6 @@ class TimerViewModel(var time: Int) : ViewModel() {
         get() = _isCounting
 
     private val _isPaused = MutableLiveData<Boolean>()
-    val isPaused: LiveData<Boolean>
-        get() = _isPaused
 
     init {
         _timeRemained.value = _setTime.value

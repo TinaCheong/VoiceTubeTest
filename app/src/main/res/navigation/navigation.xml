@@ -32,4 +32,11 @@
     <action
         android:id="@+id/action_global_setTimerDialog"
         app:destination="@id/setTimerDialog" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.tina.voicetubetest.setting.SettingFragment"
+        android:label="SettingFragment" />
+    <action
+        android:id="@+id/action_global_settingFragment"
+        app:destination="@id/settingFragment" />
 </navigation>
