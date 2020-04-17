@@ -17,6 +17,7 @@ class SettingFragment : Fragment(){
 
         val binding = FragmentSettingBinding.inflate(inflater, container, false)
 
+
         return binding.root
     }
 }
