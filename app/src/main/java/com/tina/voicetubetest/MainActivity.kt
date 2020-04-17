@@ -33,7 +33,10 @@ class MainActivity : AppCompatActivity() {
                     findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.actionGlobalTimerFragment(0))
                     true
                 }
-
+                R.id.navigation_setting -> {
+                    findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.actionGlobalSettingFragment())
+                    true
+                }
                 else -> false
 
                 }

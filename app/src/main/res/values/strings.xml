@@ -22,4 +22,15 @@
     <string name="set_time_title">請輸入1~60之間的數字︰</string>
     <string name="error_message_60">不能大於60秒啦！</string>
     <string name="error_message_0">0秒是要倒數甚麼？</string>
+
+    <!-- Setting Fragment -->
+    <string name="auto_play">自動播放</string>
+    <string name="subtitle_sync">字幕同步</string>
+    <string name="stop_playing_video">查詢單字時暫停播放</string>
+    <string name="video_recommended_notification">推薦影片提醒</string>
+    <string name="learning_reminder_notification">學習通知</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="setting_title">設定</string>
+    
 </resources>

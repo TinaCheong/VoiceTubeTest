@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -8,6 +10,146 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/setting_title"
+            android:textColor="@color/purple_424874"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Switch
+            android:id="@+id/auto_play_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@color/purple_424874"
+            android:gravity="start"
+            android:checked="true"
+            android:text="@string/auto_play"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textOn="@string/on"
+            android:textOff="@string/off"
+            android:switchTextAppearance="@style/SwitchTextAppearance"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@color/white"
+            android:showText="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setting" />
+
+        <Switch
+            android:id="@+id/subtitle_sync_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_424874"
+            android:checked="true"
+            android:gravity="start"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp"
+            android:showText="true"
+            android:switchTextAppearance="@style/SwitchTextAppearance"
+            android:text="@string/subtitle_sync"
+            android:textColor="@color/white"
+            android:textOff="@string/off"
+            android:textOn="@string/on"
+            android:textSize="18sp"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/auto_play_switch" />
+
+        <Switch
+            android:id="@+id/playing_video_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_424874"
+            android:checked="true"
+            android:gravity="start"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp"
+            android:showText="true"
+            android:switchTextAppearance="@style/SwitchTextAppearance"
+            android:text="@string/stop_playing_video"
+            android:textColor="@color/white"
+            android:textOff="@string/off"
+            android:textOn="@string/on"
+            android:textSize="18sp"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/subtitle_sync_switch" />
+
+        <Switch
+            android:id="@+id/video_notification_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_424874"
+            android:checked="true"
+            android:gravity="start"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp"
+            android:showText="true"
+            android:switchTextAppearance="@style/SwitchTextAppearance"
+            android:text="@string/video_recommended_notification"
+            android:textColor="@color/white"
+            android:textOff="@string/off"
+            android:textOn="@string/on"
+            android:textSize="18sp"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/playing_video_switch" />
+
+        <Switch
+            android:id="@+id/learn_notification_switch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/purple_424874"
+            android:checked="true"
+            android:gravity="start"
+            android:paddingLeft="16dp"
+            android:paddingTop="8dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="8dp"
+            android:showText="true"
+            android:switchTextAppearance="@style/SwitchTextAppearance"
+            android:text="@string/learning_reminder_notification"
+            android:textColor="@color/white"
+            android:textOff="@string/off"
+            android:textOn="@string/on"
+            android:textSize="18sp"
+            android:thumb="@drawable/switch_thumb"
+            android:track="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/video_notification_switch" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
