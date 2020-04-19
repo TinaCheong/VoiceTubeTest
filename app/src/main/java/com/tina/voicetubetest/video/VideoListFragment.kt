@@ -28,8 +28,6 @@ class VideoListFragment : Fragment(){
 
         binding.recyclerviewList.adapter = VideoListAdapter()
 
-        viewModel.getVideos()
-
         viewModel.videosLocal.observe(viewLifecycleOwner, Observer {
             (binding.recyclerviewList.adapter as VideoListAdapter).submitList(it)
         })
