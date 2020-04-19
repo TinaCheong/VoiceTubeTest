@@ -11,7 +11,7 @@ interface VoiceTubeDataSource {
 
     suspend fun getVideoByNetwork(): Result<VideoResult>
 
-    fun getVideoByDatabase(): DataSource.Factory<Int, Videos>
+    fun getVideoByDatabase(): LiveData<List<Videos>>
 
     suspend fun insertVideos(videos: Videos)
 }

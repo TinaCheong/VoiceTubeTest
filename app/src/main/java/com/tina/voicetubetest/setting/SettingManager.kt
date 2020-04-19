@@ -51,7 +51,7 @@ object SettingManager {
                 .apply()
         }
 
-    var videonNotify: Boolean
+    var videoNotify: Boolean
         get() {
             val sharedPreferences =
                 VoiceTubeApplication.INSTANCE.getSharedPreferences(SETTING_DATA, Context.MODE_PRIVATE)

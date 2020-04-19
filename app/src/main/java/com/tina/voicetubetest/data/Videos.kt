@@ -7,10 +7,8 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-@Entity(tableName = "video_list_table")
+@Entity(tableName = "video_list_table", primaryKeys = ["video_title", "video_image"])
 data class Videos(
-    @PrimaryKey(autoGenerate = true)
-    val autoId: Int = 0,
     @ColumnInfo(name = "video_title")
     val title: String = "",
     @ColumnInfo(name = "video_image")
