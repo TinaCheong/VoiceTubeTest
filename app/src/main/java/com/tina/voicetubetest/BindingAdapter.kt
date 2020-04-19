@@ -35,17 +35,5 @@ fun bindApiStatus(view: ProgressBar, status: LoadApiStatus?) {
     }
 }
 
-@BindingAdapter("setupApiErrorMessage")
-fun bindApiErrorMessage(view: TextView, message: String?) {
-    when (message) {
-        null, "" -> {
-            view.visibility = View.GONE
-        }
-        else -> {
-            view.text = message
-            view.visibility = View.VISIBLE
-        }
-    }
-}
 
 

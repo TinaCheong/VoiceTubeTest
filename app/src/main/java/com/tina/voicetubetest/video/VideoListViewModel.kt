@@ -51,10 +51,11 @@ class VideoListViewModel(private val voiceTubeRepository: VoiceTubeRepository) :
 
     init {
         _status.value = LoadApiStatus.DONE
+        getVideos()
     }
 
 
-    fun getVideos() {
+    private fun getVideos() {
 
         coroutineScope.launch {
 

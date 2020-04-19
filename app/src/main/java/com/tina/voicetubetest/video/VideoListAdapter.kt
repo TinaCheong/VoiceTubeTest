@@ -14,7 +14,8 @@ class VideoListAdapter :
 
     private var videoList: List<Videos>? = null
 
-    class VideoViewHolder(private var binding: ItemVideoBriefBinding): RecyclerView.ViewHolder(binding.root) {
+    class VideoViewHolder(private var binding: ItemVideoBriefBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(videos: Videos) {
             binding.videos = videos
@@ -42,7 +43,13 @@ class VideoListAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
-        return VideoViewHolder(ItemVideoBriefBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return VideoViewHolder(
+            ItemVideoBriefBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
@@ -50,5 +57,5 @@ class VideoListAdapter :
             holder.bind(it)
         }
 
-        }
     }
+}
