@@ -12,16 +12,12 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
-    private val viewModel by viewModels<MainViewModel> { getVmFactory() }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.lifecycleOwner = this
-
-        binding.viewModel = viewModel
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId) {

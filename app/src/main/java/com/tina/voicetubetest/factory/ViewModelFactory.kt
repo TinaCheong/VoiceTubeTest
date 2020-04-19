@@ -14,9 +14,6 @@ class ViewModelFactory constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
-                isAssignableFrom(MainViewModel::class.java) ->
-                    MainViewModel(voiceTubeRepository)
-
                 isAssignableFrom(VideoListViewModel::class.java) ->
                     VideoListViewModel(voiceTubeRepository)
 
