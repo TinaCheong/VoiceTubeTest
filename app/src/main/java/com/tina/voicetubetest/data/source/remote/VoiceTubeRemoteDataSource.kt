@@ -24,7 +24,7 @@ object VoiceTubeRemoteDataSource : VoiceTubeDataSource{
         }
     }
 
-    override fun getVideoByDatabase(): DataSource.Factory<Int, Videos> {
+    override fun getVideoByDatabase(): LiveData<List<Videos>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

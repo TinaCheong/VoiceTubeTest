@@ -23,11 +23,7 @@ import kotlinx.coroutines.launch
 
 class VideoListViewModel(private val voiceTubeRepository: VoiceTubeRepository) : ViewModel() {
 
-    val videosLocal = LivePagedListBuilder(voiceTubeRepository.getVideoByDatabase(),3).build()
-
-    private val sourceFactory = PagingDataSourceFactory()
-
-    val videos : LiveData<PagedList<Videos>> = sourceFactory.toLiveData(3, null)
+    val videosLocal = voiceTubeRepository.getVideoByDatabase()
 
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -58,7 +54,7 @@ class VideoListViewModel(private val voiceTubeRepository: VoiceTubeRepository) :
     }
 
 
-    fun getVideos(isInitial: Boolean = false) {
+    fun getVideos() {
 
         coroutineScope.launch {
 
@@ -68,31 +64,31 @@ class VideoListViewModel(private val voiceTubeRepository: VoiceTubeRepository) :
                     Util.getString(R.string.internet_not_connected),
                     Toast.LENGTH_SHORT
                 ).show()
-                if (isInitial) _status.value = LoadApiStatus.ERROR
+                _status.value = LoadApiStatus.ERROR
 
             } else {
 
-                if (isInitial) _status.value = LoadApiStatus.LOADING
+                _status.value = LoadApiStatus.LOADING
 
                 when (val result = voiceTubeRepository.getVideoByNetwork()) {
                     is com.tina.voicetubetest.data.Result.Success -> {
                         _error.value = null
-                        if (isInitial) _status.value = LoadApiStatus.DONE
+                        _status.value = LoadApiStatus.DONE
                         result.data.videoList.forEach {
                             voiceTubeRepository.insertVideos(it)
                         }
                     }
                     is com.tina.voicetubetest.data.Result.Fail -> {
                         _error.value = result.error
-                        if (isInitial) _status.value = LoadApiStatus.ERROR
+                        _status.value = LoadApiStatus.ERROR
                     }
                     is com.tina.voicetubetest.data.Result.Error -> {
                         _error.value = result.exception.toString()
-                        if (isInitial) _status.value = LoadApiStatus.ERROR
+                        _status.value = LoadApiStatus.ERROR
                     }
                     else -> {
                         _error.value = Util.getString(R.string.internet_error)
-                        if (isInitial) _status.value = LoadApiStatus.ERROR
+                        _status.value = LoadApiStatus.ERROR
                     }
                 }
             }

@@ -2,14 +2,17 @@ package com.tina.voicetubetest.video
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagedListAdapter
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tina.voicetubetest.data.Videos
 import com.tina.voicetubetest.databinding.ItemVideoBriefBinding
 
-class VideoPageListAdapter :
-    PagedListAdapter<Videos, VideoPageListAdapter.VideoViewHolder>(DiffCallback) {
+class VideoListAdapter :
+    ListAdapter<Videos, VideoListAdapter.VideoViewHolder>(DiffCallback) {
+
+    private var videoList: List<Videos>? = null
 
     class VideoViewHolder(private var binding: ItemVideoBriefBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -25,8 +28,17 @@ class VideoPageListAdapter :
         }
 
         override fun areContentsTheSame(oldItem: Videos, newItem: Videos): Boolean {
-            return oldItem.autoId == newItem.autoId
+            return oldItem.title == newItem.title && oldItem.img == newItem.img
         }
+    }
+
+    override fun getItemCount(): Int {
+        return videoList?.let { Int.MAX_VALUE } ?: 0
+    }
+
+    override fun submitList(list: List<Videos>?) {
+        super.submitList(list)
+        this.videoList = list
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
@@ -34,7 +46,9 @@ class VideoPageListAdapter :
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        val videos = getItem(position)
-        videos?.let { holder.bind(it) }
+        videoList?.get(videoList?.let { position % it.size } ?: 0)?.let {
+            holder.bind(it)
+        }
+
         }
     }

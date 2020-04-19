@@ -16,7 +16,7 @@ interface VideoDatabaseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveVideos(videos: Videos)
 
-    @Query("SELECT * FROM video_list_table ORDER BY autoId DESC")
-    fun getAllVideos(): DataSource.Factory<Int, Videos>
+    @Query("SELECT * FROM video_list_table")
+    fun getAllVideos(): LiveData<List<Videos>>
 
 }
